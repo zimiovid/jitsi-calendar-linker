@@ -27,7 +27,6 @@
         "esbuild-plugin-inline-import": "^1.1.0",
         "eslint": "^9.11.1",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-deprecation": "^2.0.0",
         "eslint-plugin-simple-import-sort": "^12.1.1",
         "eslint-plugin-sonarjs": "^3.0.5",
         "globals": "^15.9.0",
