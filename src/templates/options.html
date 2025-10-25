@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Jitsi Extension Settings</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 320px;
+        }
+
+        button {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Settings</h3>
+    <label>
+        Jitsi domain:
+        <input id="domain" placeholder="meet.jit.si" />
+    </label>
+    <label>
+        Enable dial-in numbers
+        <input id="numbersEnabled" type="checkbox" />
+    </label>
+    <label>
+        Numbers URL (optional):
+        <input id="numbersUrl" placeholder="https://example.com/numbers.json" />
+    </label>
+    <label>
+        Conference mapper URL (optional):
+        <input id="mapperUrl" placeholder="https://example.com/mapper" />
+    </label>
+    <label>
+        Generate digits room name
+        <input id="generateDigitsName" type="checkbox" checked />
+    </label>
+    <button id="save">Save</button>
+    <script src="options.js"></script>
+</body>
+
+</html>

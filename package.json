@@ -1,0 +1,38 @@
+{
+    "name": "jitsi-calendar-linker",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build:content": "node scripts/esbuild.config.mjs",
+        "build:popup": "echo 'built with build:content'",
+        "build:assets": "node scripts/build-assets.mjs",
+        "build": "npm run prepare && npm run build:content && npm run build:popup && npm run build:assets",
+        "watch": "esbuild src/main.ts --bundle --outfile=dist/main.js --format=iife --target=es2018 --watch",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint \"src/**/*.{ts,js}\"",
+        "lint:fix": "eslint \"src/**/*.{ts,js}\" --fix",
+        "prepare": "mkdir -p dist",
+        "test": "mkdir -p coverage/.tmp && vitest run --coverage",
+        "test:watch": "vitest --watch"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.11.1",
+        "@types/chrome": "^0.1.24",
+        "@types/jsdom": "^27.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.8.1",
+        "@typescript-eslint/parser": "^8.8.1",
+        "@vitest/coverage-v8": "^4.0.3",
+        "esbuild": "^0.24.0",
+        "esbuild-plugin-inline-import": "^1.1.0",
+        "eslint": "^9.11.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-deprecation": "^2.0.0",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
+        "eslint-plugin-sonarjs": "^3.0.5",
+        "globals": "^15.9.0",
+        "jsdom": "^27.0.1",
+        "typescript": "^5.6.3",
+        "vitest": "^4.0.3"
+    }
+}
