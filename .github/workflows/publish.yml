@@ -1,0 +1,49 @@
+name: publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Action mode: upload or publish'
+        required: true
+        default: 'upload'
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install deps
+        run: npm ci
+      - name: Lint, typecheck, test
+        run: |
+          npm run typecheck
+          npm run lint
+          npm test
+      - name: Build dist
+        run: npm run build
+      - name: Create release zip
+        run: zip -r release.zip dist
+      - name: Upload to Chrome Web Store
+        uses: mobilefirstllc/cws-publish@latest
+        with:
+          action: ${{ github.event.inputs.mode || 'upload' }}
+          client_id: ${{ secrets.CLIENT }}
+          client_secret: ${{ secrets.SECRET }}
+          refresh_token: ${{ secrets.TOKEN }}
+          extension_id: ${{ secrets.EXTENSION_ID }}
+          zip_file: 'release.zip'
+      - name: Create GitHub Release (attach zip)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

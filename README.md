@@ -6,6 +6,8 @@
 
 Add a Jitsi meeting button to Google Calendar (classic v1 and new v2 UI). Supports quick dialog (Event/Task), auto‑generated room names, and smart updates to description/location.
 
+> A zero‑hassle, self‑hostable way to add a “Jitsi Meeting” button to Google Calendar without publishing marketplace apps — perfect for corporate domains and restricted environments.
+
 ## Table of contents
 - Features
 - Requirements
