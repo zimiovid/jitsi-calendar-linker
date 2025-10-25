@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execSync } from 'node:child_process'
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 function log(msg) { process.stdout.write(msg + '\n') }
@@ -12,13 +12,11 @@ const version = rawArg.replace(/^v/, '')
 const tag = 'v' + version
 
 const root = process.cwd()
+// Only version source files that are committed to git.
 const files = [
     resolve(root, 'package.json'),
     resolve(root, 'src/manifest.json'),
 ]
-if (existsSync(resolve(root, 'dist/manifest.json'))) {
-    files.push(resolve(root, 'dist/manifest.json'))
-}
 
 for (const file of files) {
     const json = JSON.parse(readFileSync(file, 'utf8'))
